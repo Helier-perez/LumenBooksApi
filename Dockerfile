@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -qqy git unzip libfreetype6-dev \
 # PHP extensions
 RUN docker-php-ext-install sockets
 RUN docker-php-ext-install soap
-RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
+RUN docker-php-ext-install pdo_mysql
 
 #composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer

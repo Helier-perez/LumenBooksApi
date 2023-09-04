@@ -18,7 +18,7 @@ services:
       - ./docker/php/conf.d/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
       - ./docker/php/conf.d/error_reporting.ini:/usr/local/etc/php/conf.d/error_reporting.ini
   books_db:
-    image: mysql:5.7
+    image: mysql:8.0
     restart: always
     ports:
       - 3308:3306
