@@ -1,0 +1,40 @@
+services:
+  web:
+    image: nginx:latest
+    volumes:
+      - .:/var/www
+      - ./docker/nginx/default.conf:/etc/nginx/templates/default.conf.template
+    working_dir: /var/www
+    links:
+      - php
+    ports:
+      - 8082:80
+  php:
+    build: .
+    links:
+      - db
+    volumes:
+      - .:/var/www
+      - ./docker/php/conf.d/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+      - ./docker/php/conf.d/error_reporting.ini:/usr/local/etc/php/conf.d/error_reporting.ini
+  db:
+    image: mysql:5.7
+    restart: always
+    ports:
+      - 3307:3306
+    environment:
+      MYSQL_DATABASE: helier_db2
+      MYSQL_USER: helier
+      MYSQL_PASSWORD: 123456
+      MYSQL_ROOT_PASSWORD: toor
+    volumes:
+      - db1:/var/lib/mysql
+
+volumes:
+  db1:
+  
+networks:
+  default:
+    name: library-net
+    external: true
+
