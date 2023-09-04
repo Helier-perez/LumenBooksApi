@@ -23,15 +23,15 @@ services:
     ports:
       - 3307:3306
     environment:
-      MYSQL_DATABASE: helier_db2
-      MYSQL_USER: helier
-      MYSQL_PASSWORD: 123456
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
       MYSQL_ROOT_PASSWORD: toor
     volumes:
-      - db1:/var/lib/mysql
+      - db:/var/lib/mysql
 
 volumes:
-  db1:
+  db:
   
 networks:
   default:
