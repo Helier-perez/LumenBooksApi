@@ -12,12 +12,12 @@ services:
   php:
     build: .
     links:
-      - db
+      - books_db
     volumes:
       - .:/var/www
       - ./docker/php/conf.d/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
       - ./docker/php/conf.d/error_reporting.ini:/usr/local/etc/php/conf.d/error_reporting.ini
-  db:
+  books_db:
     image: mysql:5.7
     restart: always
     ports:
@@ -28,10 +28,10 @@ services:
       MYSQL_PASSWORD: ${DB_PASSWORD}
       MYSQL_ROOT_PASSWORD: toor
     volumes:
-      - db:/var/lib/mysql
+      - books_db:/var/lib/mysql
 
 volumes:
-  db:
+  books_db:
   
 networks:
   default:
